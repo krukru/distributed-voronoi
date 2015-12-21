@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Distributed Voronoi</title>
+</head>
+<body onload="init()">
+  <h1>Welcome</h1>
+	<p>Thanks for helping out!</p>
+	<p>Everything is being taken care of. All you need to do is sit back and wait a couple of seconds.</p>
+	<p>While you're waiting, feel free to have a whack at the red mushroom</p>
+
+	<button onclick="hitme()" onkeydown="if (event.keyCode == 13 || event.keyCode == 32) cheater();">hitme</button>
+	<div>
+	  Number of hits: <div id="counter">0</div>
+	</div>
+	<div id="result"></div>
+<script type="text/javascript">
+	var counterValue = 0;
+	var counterText;
+	function hitme() {
+		counterValue += 1;
+		counterText.innerHTML = counterValue;
+	}
+	function cheater() {
+		counterValue -= 1;
+	}
+	function init() {
+		counterText = document.getElementById("counter");
+	  requestTask();
+	}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/manager.js"></script>
+</body>
+</html>
+
+
