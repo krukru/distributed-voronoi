@@ -3,10 +3,10 @@
 $width = 3840;
 $height = 2160;
 
-$columnsPerTask = 500;
-$rowsPerTask = 500;
+$columnsPerTask = 250;
+$rowsPerTask = 250;
 
-$numberOfPoints = 75;
+$numberOfPoints = 250;
 $points = array();
 $colorPalette = array();
 for ($i = 0; $i < $numberOfPoints; $i++) {
@@ -49,5 +49,7 @@ $image = new Imagick();
 $image->newImage($width, $height, new ImagickPixel('black'));
 $image->setImageFormat('bmp');
 $image->writeImage(sprintf('%s/%s', $imagesFolderName, $filename));
-
+$image->setFormat('jpg');
+$image->writeImage('images/test.jpg');
 echo 'gotov';
+var_dump($taskId);

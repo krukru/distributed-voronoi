@@ -36,8 +36,9 @@ foreach ($areaIterator as $rowIterator) {
 	$areaIterator->syncIterator();
 }
 $saveOk = $image->writeImage();
-$image->setImageFormat('jpg');
-$image->writeImage('images/test.jpg');
+unlink('images/test.jpg');
+#$image->setImageFormat('jpg');
+#$image->writeImage('images/test.jpg');
 
 if ($saveOk) {
 	$pendingTasks = apc_fetch($pendingTasksKey);
