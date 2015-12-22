@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 require('LZString.php');
 
 $imagePath = 'images/test.bmp';
@@ -46,3 +49,6 @@ foreach ($pendingTasks as $key => $task) {
 		break;
 	}
 }
+
+$image->setImageFormat('jpg');
+$image->writeImage('images/test.jpg');
