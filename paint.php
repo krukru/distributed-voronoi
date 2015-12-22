@@ -1,11 +1,13 @@
 <?php
 
+require('LZString.php');
+
 $imagePath = 'images/test.bmp';
 $paletteKey = 'test.palette';
 $pendingTasksKey = 'test.pending';
 
 #$data = '{"x":350,"y":500,"columns":100,"rows":100,"points":[1, 0, 3, 4]}';
-$data = $_POST['data'];
+$data = LZString::decompressFromBase64($_POST['data']);
 $json = json_decode($data, true);
 
 $taskId = $json['taskId'];

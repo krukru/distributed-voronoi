@@ -2,6 +2,8 @@ var w;
 var task;
 
 function requestTask() {
+	document.title = "Please wait, working...";
+	document.getElementById("result").innerHTML = "";
 	$.get("request.php", function(data) {
 		task = JSON.parse(data);
 		startWorker(task);
@@ -24,10 +26,13 @@ function taskCompleted(event) {
 	stopWorker();
 	response = task;
 	response.solution = event.data;
-	$.post("paint.php", {data : JSON.stringify(response)})
+	encodedResponse = LZString.compressToBase64(JSON.stringify(response));
+	console.log(encodedResponse.length);
+	$.post("paint.php", {data : encodedResponse })
 		.done(function(data) {
-			alert("That's it, you can see how it's progressing by clicking on the link bellow the button");
-			document.getElementById("result").innerHTML = "link";
+			document.title = "Finished!";
+			alert("That's it, thanks for your time. You can check the progress at the link that is now displayed under the buttons");
+			document.getElementById("result").innerHTML = "<a href='status.php' target='_blank'>Link to the results</a><br><br><button class='btn-blue' onclick='requestTask();'>Hey that was super fast, let's try again!</button>";
 		});
 }
 

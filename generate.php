@@ -1,12 +1,12 @@
 <?php
 
-$width = 500;
-$height = 500;
+$width = 3840;
+$height = 2160;
 
 $columnsPerTask = 500;
 $rowsPerTask = 500;
 
-$numberOfPoints = 5;
+$numberOfPoints = 50;
 $points = array();
 $colorPalette = array();
 for ($i = 0; $i < $numberOfPoints; $i++) {
@@ -38,6 +38,7 @@ for ($i = 0; $i < $height; $i += $rowsPerTask) {
 		$taskId += 1;
 	}
 }
+shuffle($unsolved);
 apc_store('test.pending', $pending, 0);
 apc_store('test.unsolved', $unsolved, 0);
 
@@ -48,5 +49,5 @@ $image = new Imagick();
 $image->newImage($width, $height, new ImagickPixel('black'));
 $image->setImageFormat('bmp');
 $image->writeImage(sprintf('%s/%s', $imagesFolderName, $filename));
-header('Content-type: image/bmp');
-echo $image;
+
+echo 'gotov';

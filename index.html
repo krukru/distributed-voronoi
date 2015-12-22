@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Distributed Voronoi</title>
+  <title>Please wait, working...</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body onload="init()">
   <h1>Welcome</h1>
 	<p>Thanks for helping out!</p>
-	<p>Everything is being taken care of. All you need to do is sit back and wait a couple of seconds.</p>
-	<p>While you're waiting, feel free to have a whack at the red mushroom</p>
+	<p>Everything is being taken care of. All you need to do is sit back and wait for a couple of seconds. You'll get a message when the process has finished.</p>
+	<p>While you're waiting, feel free to have a whack at the buttons.</p>
 
-	<button onclick="hitme()" onkeydown="if (event.keyCode == 13 || event.keyCode == 32) cheater();">hitme</button>
+	<button class="btn-blue" onclick="hitme(1)" onkeydown="if (event.keyCode == 13 || event.keyCode == 32) cheater(1);">Click me!</button>
+	<button class="btn-red" onclick="hitme(-1)" onkeydown="if (event.keyCode == 13 || event.keyCode == 32) cheater(-1);">Click me!</button>
 	<div>
-	  Number of hits: <div id="counter">0</div>
+	  Score: <div id="counter">0</div>
 	</div>
 	<div id="result"></div>
 <script type="text/javascript">
 	var counterValue = 0;
 	var counterText;
-	function hitme() {
-		counterValue += 1;
+	function hitme(value) {
+		counterValue += value;
 		counterText.innerHTML = counterValue;
 	}
-	function cheater() {
-		counterValue -= 1;
+	function cheater(value) {
+		counterValue -= value;
 	}
 	function init() {
 		counterText = document.getElementById("counter");
-	  requestTask();
+	  	requestTask();
 	}
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/lz-string.js"></script>
 <script src="js/manager.js"></script>
 </body>
 </html>
