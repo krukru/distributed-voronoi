@@ -5,8 +5,13 @@ function requestTask() {
 	document.title = "Please wait, working...";
 	document.getElementById("result").innerHTML = "";
 	$.get("request.php", function(data) {
-		task = JSON.parse(data);
-		startWorker(task);
+		try {
+			task = JSON.parse(data);
+			startWorker(task);
+		} catch(e) {
+			document.getElementById("result").innerHTML = "<a href='diagram.php'>Link to the results</a>";
+			alert('That was it, thanks! Here are the results (look for the link under the buttons.');
+		}
 	});
 }
 

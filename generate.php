@@ -1,12 +1,12 @@
 <?php
 
-$width = 5000;
-$height = 5000;
+$width = 3840;
+$height = 2160;
 
 $columnsPerTask = 500;
 $rowsPerTask = 500;
 
-$numberOfPoints = 100;
+$numberOfPoints = 75;
 $points = array();
 $colorPalette = array();
 for ($i = 0; $i < $numberOfPoints; $i++) {

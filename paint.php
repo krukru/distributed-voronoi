@@ -1,15 +1,11 @@
 <?php
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 require('LZString.php');
 
 $imagePath = 'images/test.bmp';
 $paletteKey = 'test.palette';
 $pendingTasksKey = 'test.pending';
 
-#$data = '{"x":350,"y":500,"columns":100,"rows":100,"points":[1, 0, 3, 4]}';
 $data = LZString::decompressFromBase64($_POST['data']);
 $json = json_decode($data, true);
 
@@ -39,16 +35,17 @@ foreach ($areaIterator as $rowIterator) {
 	}
 	$areaIterator->syncIterator();
 }
-$image->writeImage();
-
-$pendingTasks = apc_fetch($pendingTasksKey);
-foreach ($pendingTasks as $key => $task) {
-	if($task['taskId'] == $taskId) {
-		unset($pendingTasks[$key]);
-		apc_store($pendingTasksKey, $pendingTasks);
-		break;
-	}
-}
-
+$saveOk = $image->writeImage();
 $image->setImageFormat('jpg');
 $image->writeImage('images/test.jpg');
+
+if ($saveOk) {
+	$pendingTasks = apc_fetch($pendingTasksKey);
+	foreach ($pendingTasks as $key => $task) {
+  		if($task['taskId'] == $taskId) {
+  			unset($pendingTasks[$key]);
+  			apc_store($pendingTasksKey, $pendingTasks);
+			break;
+		}
+	}
+}

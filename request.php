@@ -9,7 +9,6 @@ $unsolvedTasksKey = 'test.unsolved';
 $pendingTasks = apc_fetch($pendingTasksKey);
 $unsolvedTasks = apc_fetch($unsolvedTasksKey);
 $points = apc_fetch($pointsKey);
-
 if (empty($unsolvedTasks) == false) {
 	$task = array_pop($unsolvedTasks);
 	apc_store($unsolvedTasksKey, $unsolvedTasks);
